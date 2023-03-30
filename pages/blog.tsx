@@ -1,6 +1,7 @@
 import { getAllPosts } from '@/api/posts'
 import { BlogPost } from '@/interfaces/post'
 import Head from 'next/head'
+import Link from 'next/link'
 
 interface Props {
   allPosts: BlogPost[]
@@ -13,9 +14,18 @@ const Blog = ({ allPosts }: Props) => {
     <>
       <div>
         <Head>
-          <title>{`René Mundt's Web Log`}</title>
+          <title>{`René Mundt - Web Log`}</title>
         </Head>
-        {posts && posts.length > 0 && posts.map((post, i) => <div key={i}>{post.title}</div>)}
+        {posts &&
+          posts.length > 0 &&
+          posts.map((post, i) => (
+            <>
+              <Link key={i} as={`/posts/${post.slug}`} href="/posts/[slug]">
+                {post.title}
+              </Link>
+              <br />
+            </>
+          ))}
       </div>
     </>
   )
