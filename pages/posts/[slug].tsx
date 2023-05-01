@@ -3,6 +3,10 @@ import ErrorPage from 'next/error'
 import Head from 'next/head'
 import { BlogPost } from '../../interfaces/post'
 import { getAllPosts, getPostBySlug } from '@/api/posts'
+import Layout from '@/components/blog/layout'
+import Container from '@/components/blog/container'
+import PostHeader from '@/components/blog/post-header'
+import PostBody from '@/components/blog/post-body'
 
 type Props = {
   post: BlogPost
@@ -14,22 +18,26 @@ const Post = ({ post }: Props) => {
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
   }
+
   return (
-    <>
-      {router.isFallback ? (
-        <div>Loading…</div>
-      ) : (
-        <>
-          <article>
-            <Head>
-              <title>{title}</title>
-              <meta property="og:image" content={post.ogImage.url} />
-            </Head>
-            <div>{post.title}</div>
-          </article>
-        </>
-      )}
-    </>
+    <Layout>
+      <Container>
+        {router.isFallback ? (
+          <div>Loading…</div>
+        ) : (
+          <>
+            <article>
+              <Head>
+                <title>{title}</title>
+                <meta property="og:image" content={post.ogImage.url} />
+              </Head>
+              <PostHeader title={post.title} date={post.date} author={post.author} />
+              <PostBody content={post.content} />
+            </article>
+          </>
+        )}
+      </Container>
+    </Layout>
   )
 }
 

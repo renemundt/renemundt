@@ -17,6 +17,10 @@ const Layout = ({ pageTitle, heading, children }: Props) => {
         <meta name="description" content="Website of René Mundt" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+      <header>
+        <div>René Mundt</div>
+        <div>Menu</div>
+      </header>
       <main>
         <h1 className={inter.className}>{heading}</h1>
         {children}

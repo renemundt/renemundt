@@ -1,12 +1,11 @@
+import { Author } from './author'
+
 export interface BlogPost {
   slug: string
   title: string
   date: string
   coverImage: string
-  author: {
-    name: string
-    picture: string
-  }
+  author: Author
   excerpt: string
   ogImage: {
     url: string
