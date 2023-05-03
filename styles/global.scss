@@ -1,7 +1,22 @@
 * {
   margin: 0;
 }
+a {
+  all: unset;
+  cursor: pointer;
+}
 
+header {
+  position: sticky;
+}
+
+nav a {
+  transition: transform 250ms;
+}
+
+nav a:hover {
+  transform: translateY(-5px);
+}
 html,
 body {
   height: 100%;
@@ -11,4 +26,10 @@ header {
   align-items: center;
   justify-content: space-between;
   background-color: gray;
+  padding: 0.5rem;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
 }

@@ -1,4 +1,5 @@
 import { getAllPosts } from '@/api/posts'
+import Layout from '@/components/layout'
 import { BlogPost } from '@/interfaces/post'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -12,21 +13,20 @@ const Blog = ({ allPosts }: Props) => {
   console.log('posts', posts)
   return (
     <>
-      <div>
-        <Head>
-          <title>{`René Mundt - Web Log`}</title>
-        </Head>
-        {posts &&
-          posts.length > 0 &&
-          posts.map((post, i) => (
-            <>
-              <Link key={i} as={`/posts/${post.slug}`} href="/posts/[slug]">
-                {post.title}
-              </Link>
-              <br />
-            </>
-          ))}
-      </div>
+      <Layout pageTitle="René Mundt">Web Log</Layout>
+      <Head>
+        <title>{`René Mundt - Web Log`}</title>
+      </Head>
+      {posts &&
+        posts.length > 0 &&
+        posts.map((post, i) => (
+          <>
+            <Link key={i} as={`/posts/${post.slug}`} href="/posts/[slug]">
+              {post.title}
+            </Link>
+            <br />
+          </>
+        ))}
     </>
   )
 }
